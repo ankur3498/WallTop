@@ -5,7 +5,7 @@ import { StatusBar } from 'react-native';
 
 // Screens
 import Onboarding from './src/screens/Onboarding';
-
+import HomeScreen from './src/screens/HomeScreen';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -21,6 +21,8 @@ export default function App() {
         }}
       >
         <Stack.Screen name="Onboarding" component={Onboarding} />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

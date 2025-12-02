@@ -14,16 +14,16 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import { useNavigation } from "@react-navigation/native";
 
-const LOGO = require('../assets/logo.png');
-const HERO = require('../assets/hero.png');
-const GOOGLE = require('../assets/Google.png');
+const LOGO = require('../assets/images/logo.png');
+const HERO = require('../assets/images/hero.png');
+const GOOGLE = require('../assets/images/Google.png');
 
-export default function Onboarding(): JSX.Element {
+export default function Onboarding(){
   const { width, height } = useWindowDimensions();
   const insets = useSafeAreaInsets();
-
-  // Design baseline (width used by mock). Scale keeps layout proportional.
+  const navigation = useNavigation();
   const BASE_WIDTH = 390;
   const scale = Math.max(0.85, Math.min(width / BASE_WIDTH, 1.2));
 
@@ -56,7 +56,7 @@ export default function Onboarding(): JSX.Element {
           <Pressable
             style={styles.primaryBtn}
             android_ripple={{ color: '#eee' }}
-            onPress={() => {}}
+            onPress={() => navigation.navigate("HomeScreen" as never)}
           >
             <Text style={styles.primaryBtnText}>Get Started</Text>
             <Text style={styles.icon}>↗</Text>
@@ -94,7 +94,6 @@ function getStyles({
     container: {
       alignItems: 'center',
       paddingBottom: 36 * scale,
-      // ensure content below the notch: top padding is safe-area inset + design offset
       paddingTop:
         insetTop + (Platform.OS === 'android' ? 8 * scale : 12 * scale),
       paddingHorizontal: 18 * scale,
@@ -102,7 +101,6 @@ function getStyles({
 
     header: {
       alignItems: 'center',
-      // use padding instead of margin so header respects notch
       paddingTop: 6 * scale,
       paddingBottom: 8 * scale,
     },
